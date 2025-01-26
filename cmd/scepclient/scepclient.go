@@ -5,6 +5,7 @@ import (
 	"crypto"
 	_ "crypto/sha256"
 	"crypto/x509"
+	"encoding/base64"
 	"encoding/hex"
 	"flag"
 	"fmt"
@@ -97,6 +98,8 @@ func run(cfg runCfg) error {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+
+	fmt.Println(base64.StdEncoding.EncodeToString(csr.Raw))
 
 	var self *x509.Certificate
 	cert, err := loadPEMCertFromFile(cfg.certPath)
